@@ -10,8 +10,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
-@HiltViewModel
-class MainViewModel @Inject constructor(
+class MainViewModel(
     private val teamRepository: TeamRepository,
     private val dispatcherProvider: RealCoroutineDispatcherProvider
 ) : ViewModel() {

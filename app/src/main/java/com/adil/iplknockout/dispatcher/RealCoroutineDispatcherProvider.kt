@@ -4,9 +4,9 @@ import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import javax.inject.Inject
 
-open class RealCoroutineDispatcherProvider @Inject constructor() {
-    val main by lazy { Dispatchers.Main }
-    val io by lazy { Dispatchers.IO }
-    val default by lazy { Dispatchers.Default }
-    val unconfirmed by lazy { Dispatchers.Unconfined }
+open class RealCoroutineDispatcherProvider @Inject constructor() : CoroutineDispatcherProvider {
+    override val main: CoroutineDispatcher by lazy { Dispatchers.Main }
+    override val io: CoroutineDispatcher by lazy { Dispatchers.IO }
+    override val default: CoroutineDispatcher by lazy { Dispatchers.Default }
+    override val unconfirmed: CoroutineDispatcher by lazy { Dispatchers.Unconfined }
 }

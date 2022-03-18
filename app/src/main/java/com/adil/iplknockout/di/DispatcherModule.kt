@@ -11,8 +11,4 @@ import dagger.hilt.components.SingletonComponent
 @InstallIn(SingletonComponent::class)
 class DispatcherModule {
 
-    @Provides
-    fun provideCoroutineDispatcher() =
-        RealCoroutineDispatcherProvider()
-
 }

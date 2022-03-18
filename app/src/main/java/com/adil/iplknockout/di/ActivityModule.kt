@@ -31,6 +31,6 @@ class ActivityModule {
             })[MainViewModel::class.java]
 
     @Provides
-    fun getDataProvider() = TeamsProvider()
+    fun getDataProvider() : DataProvider = TeamsProvider()
 
 }
