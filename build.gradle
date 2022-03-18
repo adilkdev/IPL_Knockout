@@ -1,0 +1,67 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+
+buildscript {
+    ext {
+        compileSdk = 31
+        buildTools = '28.0.3'
+        minSdk = 21
+        targetSdk = 31
+
+        /*https://github.com/Kotlin/kotlinx.coroutines/releases*/
+        coroutinesVersion = '1.6.0'
+        /*https://developer.android.com/jetpack/androidx/releases/appcompat*/
+        appCompatVersion = '1.4.1'
+        /*https://developer.android.com/jetpack/androidx/releases/core*/
+        androidxCoreVersion = '1.3.1'
+        /*https://developer.android.com/jetpack/androidx/releases/activity*/
+        androidxActivityVersion = '1.1.0'
+        /*https://developer.android.com/jetpack/androidx/releases/fragment*/
+        androidxFragmentVersion = '1.2.5'
+        lifecycle_version = '2.5.0-alpha04'
+
+        kotlinDependencies = [
+                coroutines  : "org.jetbrains.kotlinx:kotlinx-coroutines-core:${coroutinesVersion}",
+        ]
+
+        androidDependencies = [
+                appCompat   : "androidx.appcompat:appcompat:${appCompatVersion}",
+                lifecycle   : "androidx.lifecycle.lifecycle-viewmodel-ktx:${lifecycle_version}",
+                androidXCore: "androidx.core:core:${androidxCoreVersion}",
+                activityKtx : "androidx.activity:activity-ktx:${androidxActivityVersion}",
+                fragmentKtx : "androidx.fragment:fragment-ktx:${androidxFragmentVersion}"
+        ]
+
+        ui = [
+                constraintLayout : 'androidx.constraintlayout:constraintlayout:2.1.3',
+                //recyclerview    : 'androidx.recyclerview:recyclerview:1.0.0',
+                material         : 'com.google.android.material:material:1.5.0',
+                picasso          : "com.squareup.picasso:picasso:2.71828"
+        ]
+
+        testing = [
+                junit       : "junit:junit:4.13.2",
+                junitExt    : "androidx.test.ext:junit:1.1.3",
+                espresso    : "androidx.test.espresso:espresso-core:3.4.0"
+        ]
+
+        hiltDependencies = [
+                gradlePlugin : "com.google.dagger:hilt-android-gradle-plugin:2.38.1",
+                hilt : "com.google.dagger:hilt-android:2.38.1",
+                kapt : "com.google.dagger:hilt-compiler:2.38.1"
+        ]
+    }
+
+    dependencies {
+        classpath hiltDependencies.gradlePlugin
+    }
+}
+
+plugins {
+    id 'com.android.application' version '7.1.2' apply false
+    id 'com.android.library' version '7.1.2' apply false
+    id 'org.jetbrains.kotlin.android' version '1.6.10' apply false
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
