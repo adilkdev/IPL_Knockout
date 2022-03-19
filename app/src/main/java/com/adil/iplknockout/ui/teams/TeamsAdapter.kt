@@ -1,5 +1,6 @@
 package com.adil.iplknockout.ui.teams
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -17,6 +18,7 @@ class TeamsAdapter @Inject constructor ()
 
     private lateinit var teamList: List<Team>
 
+    @SuppressLint("NotifyDataSetChanged")
     fun setupTeamList(teamList: List<Team>) {
         this.teamList = teamList
         notifyDataSetChanged()

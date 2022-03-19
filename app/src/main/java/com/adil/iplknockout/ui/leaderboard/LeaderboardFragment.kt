@@ -27,7 +27,7 @@ class LeaderboardFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentLeaderboardBinding.inflate(inflater)
         return binding.root
     }

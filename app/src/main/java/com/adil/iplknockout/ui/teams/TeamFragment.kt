@@ -1,15 +1,21 @@
 package com.adil.iplknockout.ui.teams
 
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.adil.iplknockout.R
 import com.adil.iplknockout.databinding.FragmentTeamsBinding
 import com.adil.iplknockout.ui.main_activity.MainViewModel
+import com.adil.iplknockout.utils.AppConstants
+import com.adil.iplknockout.utils.AppConstants.GRID_ITEM_SPACING
+import com.adil.iplknockout.utils.AppConstants.TEAMS_VIEW_SPAN_COUNT
 import com.adil.iplknockout.utils.GridItemDecorator
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
@@ -20,10 +26,6 @@ import javax.inject.Inject
 
 @AndroidEntryPoint
 class TeamFragment : Fragment(R.layout.fragment_teams) {
-
-    companion object {
-        private const val GRID_ITEM_SPACING = 40
-    }
 
     private lateinit var binding: FragmentTeamsBinding
 
@@ -49,12 +51,17 @@ class TeamFragment : Fragment(R.layout.fragment_teams) {
     }
 
     private fun setupView() {
-        with(binding.recyclerView) {
-            teamsAdapter.setupTeamList(viewModel.getTeamList())
-            adapter = teamsAdapter
-            addItemDecoration(GridItemDecorator(GRID_ITEM_SPACING))
-            layoutManager = GridLayoutManager(context, 2)
-        }
+        Handler(Looper.getMainLooper()).postDelayed({
+            with(binding.recyclerView) {
+                adapter = teamsAdapter
+                val animation =
+                    AnimationUtils.loadLayoutAnimation(context, R.anim.layout_fall_down)
+                layoutAnimation = animation
+                teamsAdapter.setupTeamList(viewModel.getTeamList())
+                addItemDecoration(GridItemDecorator(GRID_ITEM_SPACING))
+                layoutManager = GridLayoutManager(context, TEAMS_VIEW_SPAN_COUNT)
+            }
+        }, AppConstants.DEFAULT_ANIM_DURATION)
     }
 
     private fun setupClickListener() {

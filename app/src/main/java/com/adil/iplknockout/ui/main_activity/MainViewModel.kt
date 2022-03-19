@@ -9,6 +9,7 @@ import com.adil.iplknockout.data.models.TeamPair
 import com.adil.iplknockout.data.models.TeamRank
 import com.adil.iplknockout.data.repository.TeamRepository
 import com.adil.iplknockout.dispatcher.CoroutineDispatcherProvider
+import com.adil.iplknockout.utils.AppConstants
 import com.adil.iplknockout.utils.MatchSimulatorRandom
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -110,8 +111,8 @@ class MainViewModel(
         isForThirdPos: Boolean
     ) {
         val result = matchSimulatorRandom.getWinnersAndLosersOfMatch(teamPairList)
-        val winnerList = result[0]
-        val loserList = result[1]
+        val winnerList = result[AppConstants.ZEROTH_INDEX]
+        val loserList = result[AppConstants.FIRST_INDEX]
 
         /**
          * if the flag is true it means we are looking for the team with third position.
@@ -119,8 +120,8 @@ class MainViewModel(
         if (isForThirdPos) {
             val thirdPositionTeam = matchSimulatorRandom.simulateMatchBetweenTwoTeams(
                 TeamPair(
-                    loserList[0],
-                    loserList[1]
+                    loserList[AppConstants.ZEROTH_INDEX],
+                    loserList[AppConstants.FIRST_INDEX]
                 )
             ).winner
             teamRankList.add(TeamRank(thirdPositionTeam, RANK.THIRD))
@@ -131,8 +132,8 @@ class MainViewModel(
          * and hence we have the first and second position for teams.
          */
         if (loserList.size == 1) {
-            val firstPositionTeam = winnerList[0]
-            val secondPositionTeam = loserList[0]
+            val firstPositionTeam = winnerList[AppConstants.ZEROTH_INDEX]
+            val secondPositionTeam = loserList[AppConstants.ZEROTH_INDEX]
             teamRankList.add(TeamRank(firstPositionTeam, RANK.FIRST))
             teamRankList.add(TeamRank(secondPositionTeam, RANK.SECOND))
             isGameOver.postValue(true)

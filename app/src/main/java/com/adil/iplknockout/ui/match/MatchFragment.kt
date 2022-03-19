@@ -9,6 +9,8 @@ import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.adil.iplknockout.databinding.FragmentTeamsBinding
 import com.adil.iplknockout.ui.main_activity.MainViewModel
+import com.adil.iplknockout.utils.AppConstants.TEXT_MATCHES
+import com.adil.iplknockout.utils.AppConstants.TEXT_SIMULATE
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -18,11 +20,6 @@ import javax.inject.Inject
 
 @AndroidEntryPoint
 class MatchFragment : Fragment() {
-
-    companion object {
-        const val TEXT_SIMULATE = "SIMULATE"
-        const val TEXT_MATCHES = "MATCHES"
-    }
 
     private lateinit var binding: FragmentTeamsBinding
 
