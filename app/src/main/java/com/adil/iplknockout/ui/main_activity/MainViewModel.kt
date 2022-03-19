@@ -10,15 +10,19 @@ import com.adil.iplknockout.data.models.TeamRank
 import com.adil.iplknockout.data.repository.TeamRepository
 import com.adil.iplknockout.dispatcher.CoroutineDispatcherProvider
 import com.adil.iplknockout.utils.AppConstants
+import com.adil.iplknockout.utils.MatchSimulator
 import com.adil.iplknockout.utils.MatchSimulatorRandom
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import javax.inject.Inject
 
 /**
  * Created by Adil Khan on 18/03/2022
  */
 
-class MainViewModel(
+@HiltViewModel
+class MainViewModel @Inject constructor(
     private val teamRepository: TeamRepository,
     private val dispatcherProvider: CoroutineDispatcherProvider
 ) : ViewModel() {
@@ -41,7 +45,7 @@ class MainViewModel(
     /**
      *  Match simulator simulates the match based on some given logic.
      */
-    private var matchSimulatorRandom = MatchSimulatorRandom()
+    private var matchSimulator: MatchSimulator = MatchSimulatorRandom()
 
     /**
      * The teamPairListLiveData is observed by the user interface to show the details of matches.
@@ -84,12 +88,12 @@ class MainViewModel(
     fun getTeamPairs() = teamPairList.toList()
 
     /**
-     * @return immutable copy of list of teams with their rank sorted.
+     * @return immutable copy of list of teams with their rank in sorted manner.
      */
     fun getTeamRankList() = teamRankList.apply { sortBy { it.rank.ordinal } }.toList()
 
     /**
-     * @return generate a list of team pairs which will play the matches.
+     * @return generates a list of team pairs which will play the matches.
      */
     private fun generateTeamPairs(list: List<Team> = teamList) =
         teamRepository.getAllTeamPairs(list).also { teamPairList = it }
@@ -98,7 +102,7 @@ class MainViewModel(
      * gets the list of winner teams from every match
      */
     fun getWinnersOfMatch(teamPairList: List<TeamPair> = getTeamPairs()) {
-        val teamList = matchSimulatorRandom.getWinnersOfMatch(teamPairList)
+        val teamList = matchSimulator.getWinnersOfMatch(teamPairList)
         updateTeamData(teamList)
     }
 
@@ -110,7 +114,7 @@ class MainViewModel(
         teamPairList: List<TeamPair> = getTeamPairs(),
         isForThirdPos: Boolean
     ) {
-        val result = matchSimulatorRandom.getWinnersAndLosersOfMatch(teamPairList)
+        val result = matchSimulator.getWinnersAndLosersOfMatch(teamPairList)
         val winnerList = result[AppConstants.ZEROTH_INDEX]
         val loserList = result[AppConstants.FIRST_INDEX]
 
@@ -118,7 +122,7 @@ class MainViewModel(
          * if the flag is true it means we are looking for the team with third position.
          */
         if (isForThirdPos) {
-            val thirdPositionTeam = matchSimulatorRandom.simulateMatchBetweenTwoTeams(
+            val thirdPositionTeam = matchSimulator.simulateMatchBetweenTwoTeams(
                 TeamPair(
                     loserList[AppConstants.ZEROTH_INDEX],
                     loserList[AppConstants.FIRST_INDEX]
@@ -143,7 +147,7 @@ class MainViewModel(
 
     /**
      * Updates the teamList by removing the losing teams and
-     * generates new pairs for matches if there are more than one team.
+     * generates new pairs for matches if there are more than one team left.
      */
     private fun updateTeamData(teamList: List<Team>) {
         this.teamList = teamList
@@ -153,6 +157,9 @@ class MainViewModel(
         }
     }
 
+    /**
+     * resets all the data to the initial stage.
+     */
     fun restart() {
         setup()
     }

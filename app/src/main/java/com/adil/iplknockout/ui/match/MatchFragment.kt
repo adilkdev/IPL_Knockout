@@ -4,9 +4,11 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.adil.iplknockout.R
 import com.adil.iplknockout.databinding.FragmentTeamsBinding
 import com.adil.iplknockout.ui.main_activity.MainViewModel
 import com.adil.iplknockout.utils.AppConstants.TEXT_MATCHES
@@ -48,6 +50,9 @@ class MatchFragment : Fragment() {
     private fun setupObservers() {
         viewModel.teamPairListLiveData.observe(viewLifecycleOwner) {
             matchAdapter.setupData(it)
+            val animation =
+                AnimationUtils.loadLayoutAnimation(context, R.anim.layout_fall_down)
+            binding.recyclerView.layoutAnimation = animation
         }
         viewModel.isGameOver.observe(viewLifecycleOwner) {
             val action = MatchFragmentDirections.actionMatchFragmentToLeaderBoardFragment()

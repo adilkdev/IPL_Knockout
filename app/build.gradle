@@ -48,6 +48,7 @@ dependencies {
     implementation ui.material
     implementation ui.constraintLayout
     implementation androidDependencies.fragmentKtx
+    implementation androidDependencies.ktx
 
     // navigation component
     def nav_version = "2.4.1"

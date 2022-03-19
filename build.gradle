@@ -18,6 +18,7 @@ buildscript {
         /*https://developer.android.com/jetpack/androidx/releases/fragment*/
         androidxFragmentVersion = '1.2.5'
         lifecycle_version = '2.5.0-alpha04'
+        ktxVersion = '1.7.0'
 
         kotlinDependencies = [
                 coroutines  : "org.jetbrains.kotlinx:kotlinx-coroutines-core:${coroutinesVersion}",
@@ -28,7 +29,8 @@ buildscript {
                 lifecycle   : "androidx.lifecycle.lifecycle-viewmodel-ktx:${lifecycle_version}",
                 androidXCore: "androidx.core:core:${androidxCoreVersion}",
                 activityKtx : "androidx.activity:activity-ktx:${androidxActivityVersion}",
-                fragmentKtx : "androidx.fragment:fragment-ktx:${androidxFragmentVersion}"
+                fragmentKtx : "androidx.fragment:fragment-ktx:${androidxFragmentVersion}",
+                ktx         : "androidx.core:core-ktx:${ktxVersion}"
         ]
 
         ui = [
