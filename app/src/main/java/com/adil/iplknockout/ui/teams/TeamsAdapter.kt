@@ -1,4 +1,4 @@
-package com.adil.iplknockout.ui
+package com.adil.iplknockout.ui.teams
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -6,9 +6,21 @@ import androidx.recyclerview.widget.RecyclerView
 import com.adil.iplknockout.data.models.Team
 import com.adil.iplknockout.databinding.ItemSingleTeamBinding
 import com.squareup.picasso.Picasso
+import javax.inject.Inject
 
-class TeamsAdapter(private val teamList: List<Team>)
+/**
+ * Created by Adil Khan on 18/03/2022
+ */
+
+class TeamsAdapter @Inject constructor ()
     : RecyclerView.Adapter<TeamsAdapter.TeamViewHolder>() {
+
+    private lateinit var teamList: List<Team>
+
+    fun setupTeamList(teamList: List<Team>) {
+        this.teamList = teamList
+        notifyDataSetChanged()
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
         TeamViewHolder(

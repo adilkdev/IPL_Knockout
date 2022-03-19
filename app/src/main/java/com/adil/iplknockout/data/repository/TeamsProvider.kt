@@ -4,9 +4,13 @@ import android.net.Uri
 import com.adil.iplknockout.data.models.Team
 import javax.inject.Inject
 
+/**
+ * Created by Adil Khan on 18/03/2022
+ */
+
 class TeamsProvider @Inject constructor() : DataProvider {
 
-    override suspend fun provideTeams(): List<Team> =
+    override fun provideTeams(): List<Team> =
         listOf (
             Team(1,
                 Uri.parse("android.resource://com.adil.iplknockout/drawable/mi"),

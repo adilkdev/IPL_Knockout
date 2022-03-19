@@ -4,6 +4,9 @@ import android.graphics.Rect
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 
+/**
+ * Created by Adil Khan on 18/03/2022
+ */
 
 class GridItemDecorator (
     private var spacing: Int,

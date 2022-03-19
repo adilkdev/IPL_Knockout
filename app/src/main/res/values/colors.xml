@@ -9,6 +9,8 @@
     <color name="blue_darkest">#000428</color>
     <color name="blue_dark">#004E92</color>
     <color name="text_light_gray">#8F979C</color>
+    <color name="divider_light_gray">#E1E6EE</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="card_match_background">#ECEEF4</color>
 </resources>

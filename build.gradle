@@ -53,6 +53,8 @@ buildscript {
 
     dependencies {
         classpath hiltDependencies.gradlePlugin
+        def nav_version = "2.4.1"
+        classpath "androidx.navigation:navigation-safe-args-gradle-plugin:$nav_version"
     }
 }
 

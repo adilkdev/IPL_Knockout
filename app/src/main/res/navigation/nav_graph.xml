@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/teamFragment">
+
+    <fragment
+        android:id="@+id/teamFragment"
+        android:name="com.adil.iplknockout.ui.teams.TeamFragment"
+        android:label="fragment_home"
+        tools:layout="@layout/fragment_teams" >
+        <action
+            android:id="@+id/action_teamFragment_to_matchFragment"
+            app:destination="@id/matchFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/matchFragment"
+        android:name="com.adil.iplknockout.ui.match.MatchFragment"
+        android:label="MatchFragment" >
+        <action
+            android:id="@+id/action_matchFragment_to_leaderBoardFragment"
+            app:destination="@id/leaderBoardFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/leaderBoardFragment"
+        android:name="com.adil.iplknockout.ui.leaderboard.LeaderboardFragment"
+        android:label="LeaderBoardFragment" >
+        <action
+            android:id="@+id/action_leaderBoardFragment_to_teamFragment"
+            app:destination="@id/teamFragment" />
+    </fragment>
+</navigation>
