@@ -12,7 +12,9 @@
         tools:layout="@layout/fragment_teams" >
         <action
             android:id="@+id/action_teamFragment_to_matchFragment"
-            app:destination="@id/matchFragment" />
+            app:destination="@id/matchFragment"
+            app:enterAnim="@anim/slide_in_left"
+            app:exitAnim="@anim/slide_out_left" />
     </fragment>
     <fragment
         android:id="@+id/matchFragment"
@@ -20,7 +22,9 @@
         android:label="MatchFragment" >
         <action
             android:id="@+id/action_matchFragment_to_leaderBoardFragment"
-            app:destination="@id/leaderBoardFragment" />
+            app:destination="@id/leaderBoardFragment"
+            app:enterAnim="@anim/slide_in_left"
+            app:exitAnim="@anim/slide_out_left" />
     </fragment>
     <fragment
         android:id="@+id/leaderBoardFragment"
@@ -28,6 +32,8 @@
         android:label="LeaderBoardFragment" >
         <action
             android:id="@+id/action_leaderBoardFragment_to_teamFragment"
-            app:destination="@id/teamFragment" />
+            app:destination="@id/teamFragment"
+            app:enterAnim="@anim/slide_in_left"
+            app:exitAnim="@anim/slide_out_left" />
     </fragment>
 </navigation>

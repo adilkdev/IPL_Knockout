@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <dimen name="text_8_sp">8sp</dimen>
     <dimen name="text_12_sp">12sp</dimen>
     <dimen name="text_14_sp">14sp</dimen>
     <dimen name="text_20_sp">20sp</dimen>
@@ -21,6 +22,10 @@
     <dimen name="dimen_60_dp">60dp</dimen>
     <dimen name="dimen_75_dp">75dp</dimen>
     <dimen name="dimen_120_dp">120dp</dimen>
+
+
+    <item name="letter_spacing_main_title" format="float" type="dimen">0.05</item>
+    <item name="letter_spacing_sub_title" format="float" type="dimen">0.15</item>
 
 
 

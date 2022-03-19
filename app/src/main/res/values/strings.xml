@@ -5,4 +5,5 @@
     <string name="all_teams">ALL TEAMS</string>
     <string name="vs">VS</string>
     <string name="leaderboard">LEADERBOARD</string>
+    <string name="restart">RESTART</string>
 </resources>

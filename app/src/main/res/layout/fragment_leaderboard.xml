@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.leaderboard.LeaderboardFragment"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+    tools:context=".ui.leaderboard.LeaderboardFragment">
 
     <TextView
         android:id="@+id/tvTitle"
@@ -13,10 +13,10 @@
         android:layout_marginStart="@dimen/dimen_24_dp"
         android:layout_marginTop="@dimen/dimen_36_dp"
         android:fontFamily="@font/poppins_bold"
+        android:letterSpacing="@dimen/letter_spacing_main_title"
         android:text="@string/ipl_knockout"
         android:textColor="@color/black"
         android:textSize="@dimen/text_22_sp"
-        android:letterSpacing="0.05"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -24,9 +24,9 @@
         android:id="@+id/tvSubtitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/poppins_medium"
         android:layout_marginStart="@dimen/dimen_24_dp"
-        android:letterSpacing="0.15"
+        android:fontFamily="@font/poppins_medium"
+        android:letterSpacing="@dimen/letter_spacing_sub_title"
         android:text="@string/leaderboard"
         android:textColor="@color/text_light_gray"
         android:textSize="14sp"
@@ -36,12 +36,12 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
-        android:background="@drawable/rounded_card_light_gray_background"
-        app:layout_constraintTop_toBottomOf="@+id/tvSubtitle"
-        app:layout_constraintBottom_toTopOf="@+id/btnRestart"
-        android:layout_marginHorizontal="@dimen/dimen_24_dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/dimen_24_dp"
+        android:background="@drawable/rounded_card_light_gray_background"
+        app:layout_constraintBottom_toTopOf="@+id/btnRestart"
+        app:layout_constraintTop_toBottomOf="@+id/tvSubtitle" />
 
     <Button
         android:id="@+id/btnRestart"
@@ -49,15 +49,14 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/dimen_24_dp"
         android:layout_marginVertical="@dimen/dimen_16_dp"
-        android:fontFamily="@font/poppins_medium"
-        android:letterSpacing="0.15"
-        android:text="RESTART"
-        app:backgroundTint="@null"
         android:background="@drawable/gradient_blue"
+        android:fontFamily="@font/poppins_medium"
+        android:letterSpacing="@dimen/letter_spacing_sub_title"
         android:padding="@dimen/dimen_8_dp"
+        android:text="@string/restart"
         android:textColor="@color/white"
         android:textSize="14sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        />
+        app:backgroundTint="@null"
+        app:layout_constraintBottom_toBottomOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
