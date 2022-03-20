@@ -1,5 +1,6 @@
 package com.adil.iplknockout.ui.main_activity
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -50,12 +51,25 @@ class MainViewModel @Inject constructor(
     /**
      * The teamPairListLiveData is observed by the user interface to show the details of matches.
      */
-    lateinit var teamPairListLiveData: MutableLiveData<List<TeamPair>>
+    private lateinit var _teamPairListLiveData: MutableLiveData<List<TeamPair>>
+
+    /**
+     * preventing direct access to our live data from outer classes.
+     */
+    val teamPairListLiveData: LiveData<List<TeamPair>>
+        get() = _teamPairListLiveData
 
     /**
      *  isGameOver is a live data which informs the ui that the game has finished.
      */
-    lateinit var isGameOver: MutableLiveData<Boolean>
+    private lateinit var _isGameOver: MutableLiveData<Boolean>
+
+    /**
+     * preventing direct access to our live data from outer classes.
+     */
+    val isGameOver: LiveData<Boolean>
+        get() = _isGameOver
+
 
     init {
         setup()
@@ -71,9 +85,9 @@ class MainViewModel @Inject constructor(
                 teamPairList = teamRepository.getAllTeamPairs(teamList)
             }
             teamRankList = mutableListOf()
-            teamPairListLiveData = MutableLiveData<List<TeamPair>>()
-            isGameOver = MutableLiveData<Boolean>()
-            teamPairListLiveData.postValue(teamPairList)
+            _teamPairListLiveData = MutableLiveData<List<TeamPair>>()
+            _isGameOver = MutableLiveData<Boolean>()
+            _teamPairListLiveData.postValue(teamPairList)
         }
     }
 
@@ -140,7 +154,7 @@ class MainViewModel @Inject constructor(
             val secondPositionTeam = loserList[AppConstants.ZEROTH_INDEX]
             teamRankList.add(TeamRank(firstPositionTeam, RANK.FIRST))
             teamRankList.add(TeamRank(secondPositionTeam, RANK.SECOND))
-            isGameOver.postValue(true)
+            _isGameOver.postValue(true)
         }
         updateTeamData(winnerList)
     }
@@ -153,7 +167,7 @@ class MainViewModel @Inject constructor(
         this.teamList = teamList
         if (teamList.size > 1) {
             generateTeamPairs(teamList)
-            teamPairListLiveData.postValue(teamPairList)
+            _teamPairListLiveData.postValue(teamPairList)
         }
     }
 
